@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Etkinlik Çekimi | Anılarınızı Profesyonelce Ölümsüzleştirin</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(145deg, #F7F5F2 0%, #EBE7E0 100%);
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, sans-serif;
+      color: #1A2A32;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+    }
+
+    /* modern brand palette: deep navy + warm gold + soft cream */
+    :root {
+      --brand-navy: #1E3A5F;
+      --brand-gold: #D4A373;
+      --brand-gold-dark: #C28A56;
+      --brand-cream: #FEFAF5;
+      --card-white: #FFFFFF;
+      --border-warm: #E0D8CF;
+      --shadow-sm: 0 8px 18px rgba(0, 0, 0, 0.03), 0 2px 4px rgba(0, 0, 0, 0.02);
+      --shadow-md: 0 20px 35px -12px rgba(0, 0, 0, 0.08);
+    }
+
+    h1 {
+      font-size: clamp(2rem, 6vw, 3.5rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      color: var(--brand-navy);
+      margin-bottom: 1.2rem;
+    }
+    h1::after {
+      content: '';
+      display: block;
+      width: 70px;
+      height: 4px;
+      background: var(--brand-gold);
+      border-radius: 4px;
+      margin-top: 0.6rem;
+    }
+
+    h2 {
+      font-size: clamp(1.6rem, 3.2vw, 2rem);
+      font-weight: 700;
+      color: var(--brand-navy);
+      margin: 2rem 0 1rem 0;
+      letter-spacing: -0.3px;
+      border-left: 5px solid var(--brand-gold);
+      padding-left: 1rem;
+    }
+
+    h3 {
+      font-size: 1.28rem;
+      font-weight: 600;
+      color: #D4A373;
+      margin: 1.4rem 0 0.6rem 0;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 28px;
+    }
+
+    /* header premium */
+    .site-header {
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(212, 163, 115, 0.25);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      padding: 1rem 0;
+      gap: 1rem;
+    }
+    .logo {
+      font-weight: 800;
+      font-size: 1.7rem;
+      letter-spacing: -0.02em;
+      color: var(--brand-navy);
+    }
+    .logo span {
+      color: var(--brand-gold);
+    }
+    .logo small {
+      font-size: 0.65rem;
+      font-weight: 400;
+      color: #7A6B60;
+      display: block;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 500;
+      color: #5A4A3C;
+      transition: 0.2s;
+      border-bottom: 2px solid transparent;
+      padding-bottom: 3px;
+    }
+    .nav-links a:hover {
+      color: var(--brand-gold);
+      border-bottom-color: var(--brand-gold);
+    }
+
+    /* inline link style (no button) */
+    .smart-link {
+      color: var(--brand-gold);
+      font-weight: 600;
+      text-decoration: underline;
+      text-decoration-thickness: 1.2px;
+      text-underline-offset: 3px;
+      transition: 0.2s;
+    }
+    .smart-link:hover {
+      color: var(--brand-gold-dark);
+      text-decoration-thickness: 2px;
+    }
+
+    /* usage grid */
+    .usage-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1.2rem;
+      margin: 1.5rem 0;
+    }
+    .usage-card {
+      background: var(--card-white);
+      padding: 1rem;
+      border-radius: 1.2rem;
+      text-align: center;
+      border: 1px solid var(--border-warm);
+      transition: 0.2s;
+      font-weight: 500;
+    }
+    .usage-card:hover {
+      transform: translateY(-3px);
+      border-color: #D4A373;
+      box-shadow: var(--shadow-md);
+    }
+
+    /* process steps */
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+    .process-step {
+      background: var(--card-white);
+      padding: 1rem;
+      border-radius: 1.2rem;
+      text-align: center;
+      border: 1px solid var(--border-warm);
+      transition: 0.2s;
+    }
+    .process-step:hover {
+      border-color: #D4A373;
+      transform: translateY(-2px);
+    }
+    .step-num {
+      background: var(--brand-gold);
+      color: white;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+
+    /* comparison table */
+    .event-table {
+      width: 100%;
+      background: white;
+      border-radius: 1.4rem;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      margin: 1.8rem 0;
+      border-collapse: collapse;
+    }
+    .event-table th, .event-table td {
+      padding: 1rem 1.2rem;
+      text-align: left;
+      border-bottom: 1px solid #E0D8CF;
+    }
+    .event-table th {
+      background-color: #F2EDE6;
+      font-weight: 700;
+      color: #1E3A5F;
+    }
+    .badge-priority {
+      background: #FEF5E8;
+      padding: 0.2rem 0.7rem;
+      border-radius: 30px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      display: inline-block;
+      color: #D4A373;
+    }
+
+    .insight-card {
+      background: #FEFCF8;
+      border-radius: 1.5rem;
+      padding: 1.5rem;
+      margin: 1.8rem 0;
+      border-left: 6px solid var(--brand-gold);
+    }
+
+    footer {
+      background: #1E3A5F;
+      margin-top: 4rem;
+      padding: 2.2rem 0 1.8rem;
+      color: #C5D0D8;
+    }
+    .footer-flex {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .footer-links a {
+      color: #C5D0D8;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px dotted rgba(255, 255, 255, 0.3);
+    }
+    .footer-links a:hover {
+      color: #E8C9A0;
+      border-bottom-color: #E8C9A0;
+    }
+    .copyright {
+      font-size: 0.8rem;
+      opacity: 0.8;
+    }
+    hr {
+      margin: 2rem 0;
+      border: 0;
+      height: 1px;
+      background: linear-gradient(to right, #E0D8CF, transparent);
+    }
+
+    @media (max-width: 700px) {
+      .header-inner {
+        flex-direction: column;
+        text-align: center;
+      }
+      .footer-flex {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <div class="logo">
+      ETKİNLİK<span>ÇEKİMİ</span>
+      <small>anılarınızı profesyonelce ölümsüzleştirin</small>
+    </div>
+    <div class="nav-links">
+      <a href="#">Ana Sayfa</a>
+      <a href="#">Hizmetler</a>
+      <a href="#">İletişim</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="container">
+    <!-- Hero + intro paragraph with FIRST LINK embedded naturally -->
+    <div style="margin: 2rem 0 1rem 0;">
+      <h1>Etkinlik Çekimi ile<br>Anılarınızı Profesyonelce Ölümsüzleştir</h1>
+      <p style="font-size: 1.12rem; color: #6B5A4E; margin-bottom: 1rem;">
+        Her etkinlik, arkasında unutulmaz anılar ve özel hikâyeler bırakır. Bu anların doğru şekilde kaydedilmesi, hem kişisel hatıralar hem de kurumsal tanıtım açısından büyük önem taşır. Etkinlik Çekimi, bu özel anları profesyonel bir bakış açısıyla kayıt altına alarak geleceğe taşır.
+      </p>
+      <p style="margin-bottom: 1rem;">
+        Günümüzde insanlar sadece etkinliğin kendisiyle değil, o etkinliğin nasıl sunulduğu ile de ilgilenmektedir. Bu nedenle kaliteli çekim hizmetleri, organizasyonların değerini artıran önemli bir unsur haline gelmiştir.
+        Profesyonel etkinlik çekimi için <a href="https://bugraozturkfilms.com/tanitim-filmi" class="smart-link" target="_blank" rel="noopener noreferrer">Etkinlik Çekimi</a> sayfasını ziyaret edebilirsiniz.
+      </p>
+    </div>
+
+    <!-- Etkinlik Çekimi Nedir? -->
+    <h2>Etkinlik Çekimi Nedir?</h2>
+    <p>Etkinlik çekimi, çeşitli organizasyonların fotoğraf ve video formatında profesyonel ekipmanlarla kaydedilmesi işlemidir. Bu süreçte amaç yalnızca görüntü almak değil, etkinliğin ruhunu ve atmosferini en doğru şekilde yansıtmaktır. Düğünlerden kurumsal toplantılara, konserlerden fuarlara kadar her tür organizasyon bu kapsamda değerlendirilebilir. Profesyonel çekimler sayesinde etkinlikler sadece yaşanmaz, aynı zamanda tekrar izlenebilir bir deneyime dönüşür.</p>
+
+    <!-- Etkinlik Çekiminin Önemi -->
+    <h2>Etkinlik Çekiminin Önemi</h2>
+    <p>Etkinlik çekimi, hem bireyler hem de işletmeler için önemli bir iletişim aracıdır. Kişisel etkinliklerde anıların korunmasını sağlarken, kurumsal etkinliklerde marka değerini yükseltir. İyi çekilmiş bir video, izleyicide güçlü bir etki bırakır ve organizasyonun kalitesini yansıtır. Özellikle dijital platformlarda bu içerikler, geniş kitlelere ulaşarak etkinliğin etkisini artırır. Ayrıca profesyonel çekimler, etkinlik sonrası pazarlama faaliyetlerinde de kullanılabilir.</p>
+
+    <!-- Etkinlik Çekimi Nerelerde Kullanılır? -->
+    <h2>Etkinlik Çekimi Nerelerde Kullanılır?</h2>
+    <p>Etkinlik çekimi oldukça geniş bir kullanım alanına sahiptir ve farklı sektörlerde önemli rol oynar.</p>
+    <div class="usage-grid">
+      <div class="usage-card">💍 Düğün, nişan & özel günler</div>
+      <div class="usage-card">🏢 Kurumsal toplantı & seminerler</div>
+      <div class="usage-card">🎤 Konser & sahne gösterileri</div>
+      <div class="usage-card">🏷️ Fuar & ürün lansmanları</div>
+      <div class="usage-card">✂️ Açılış törenleri</div>
+      <div class="usage-card">⚽ Spor organizasyonları</div>
+      <div class="usage-card">🎭 Sosyal & kültürel etkinlikler</div>
+      <div class="usage-card">📚 Eğitim & workshop programları</div>
+    </div>
+
+    <!-- Profesyonel Etkinlik Çekimi Süreci -->
+    <h2>Profesyonel Etkinlik Çekimi Süreci</h2>
+    <p>Başarılı bir etkinlik çekimi planlama ve organizasyon gerektirir. Süreç genellikle üç ana aşamadan oluşur: hazırlık, çekim ve post-prodüksiyon. Hazırlık aşamasında etkinlik detayları incelenir ve çekim planı oluşturulur. Çekim sırasında profesyonel ekipler en önemli anları yakalamaya odaklanır. Son aşamada ise montaj, renk düzenleme ve ses iyileştirme yapılır. Bu süreç doğru yönetildiğinde ortaya etkileyici ve kaliteli bir içerik çıkar.</p>
+
+    <!-- Etkinlik Çekimi Süreç Listesi -->
+    <h2>Etkinlik Çekimi Süreç Listesi</h2>
+    <div class="process-grid">
+      <div class="process-step"><div class="step-num">1</div>Etkinlik türünün analizi</div>
+      <div class="process-step"><div class="step-num">2</div>Çekim planının hazırlanması</div>
+      <div class="process-step"><div class="step-num">3</div>Ekipmanların kontrol edilmesi</div>
+      <div class="process-step"><div class="step-num">4</div>Lokasyon incelemesi</div>
+      <div class="process-step"><div class="step-num">5</div>Profesyonel çekim yapılması</div>
+      <div class="process-step"><div class="step-num">6</div>Fotoğraf & video seçimi</div>
+      <div class="process-step"><div class="step-num">7</div>Kurgu & montaj işlemleri</div>
+      <div class="process-step"><div class="step-num">8</div>Final teslim süreci</div>
+    </div>
+
+    <!-- Etkinlik Çekimi Türleri ve Karşılaştırma Tablosu -->
+    <h2>Etkinlik Çekimi Türleri ve Karşılaştırma Tablosu</h2>
+    <table class="event-table">
+      <thead>
+        <tr><th>Etkinlik Türü</th><th>Açıklama</th><th>Amaç</th><th>Öncelik</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+        <td>Düğün Çekimi</th>
+        <td>Özel anların kaydı</th>
+        <td>Anı oluşturma</th>
+        <td><span class="badge-priority">Çok Yüksek</span></th>
+        </tr>
+        <tr>
+        <td>Kurumsal Etkinlik</th>
+        <td>Şirket organizasyonları</th>
+        <td>Marka tanıtımı</th>
+        <td><span class="badge-priority">Yüksek</span></th>
+        </tr>
+        <tr>
+        <td>Konferans Çekimi</th>
+        <td>Bilgi ve eğitim etkinlikleri</th>
+        <td>Bilgi paylaşımı</th>
+        <td><span class="badge-priority">Orta-Yüksek</span></th>
+        </tr>
+        <tr>
+        <td>Fuar Çekimi</th>
+        <td>Ürün ve hizmet tanıtımı</th>
+        <td>Pazarlama</th>
+        <td><span class="badge-priority">Yüksek</span></th>
+        </tr>
+        <tr>
+        <td>Konser Çekimi</th>
+        <td>Canlı performans kayıtları</th>
+        <td>Eğlence ve arşiv</th>
+        <td><span class="badge-priority">Yüksek</span></th>
+        <tr>
+      </tbody>
+    </table>
+
+    <!-- Etkinlik Çekiminin Avantajları -->
+    <div class="insight-card">
+      <h3 style="margin-top:0;">✅ Etkinlik Çekiminin Avantajları</h3>
+      <p>Etkinlik çekimi birçok avantaj sağlar. En önemli avantajı, anıların profesyonel şekilde korunmasıdır. Ayrıca bu içerikler sosyal medya ve web sitelerinde kullanılarak daha geniş kitlelere ulaşılabilir. Bu durum marka bilinirliğini artırır ve güven oluşturur. Profesyonel çekimler, organizasyonun kalitesini de yükseltir ve daha prestijli görünmesini sağlar.</p>
+    </div>
+
+    <!-- Etkinlik Çekiminde Dikkat Edilmesi Gerekenler -->
+    <h2>Etkinlik Çekiminde Dikkat Edilmesi Gerekenler</h2>
+    <p>Başarılı bir çekim için bazı önemli detaylara dikkat edilmelidir. Işık, ses ve kamera açıları doğru şekilde ayarlanmalıdır. Ayrıca etkinlik akışını bozmadan doğal anların yakalanması gerekir. Profesyonel ekipler bu dengeyi sağlayarak hem estetik hem de gerçekçi görüntüler elde eder. Zamanlama da oldukça önemlidir. Kritik anların kaçırılmaması için ekiplerin sürekli hazır olması gerekir.</p>
+
+    <!-- Dijital Çağda Etkinlik Çekimi -->
+    <h2>Dijital Çağda Etkinlik Çekimi</h2>
+    <p>Günümüzde etkinlik çekimleri sadece anı kaydı olarak değil, aynı zamanda dijital pazarlama aracı olarak da kullanılmaktadır. Firmalar bu videoları sosyal medya platformlarında paylaşarak marka görünürlüğünü artırır. Bu içerikler aynı zamanda potansiyel müşteriler için güven oluşturur. SEO açısından da etkinlik videoları web sitelerinde kullanıcı etkileşimini artırarak daha iyi performans sağlar.</p>
+
+    <h2>Profesyonel Etkinlik Çekimi Neden Gereklidir?</h2>
+    <p>Profesyonel çekimler, sıradan görüntüleri anlamlı hikâyelere dönüştürür. Amatör çekimler çoğu zaman önemli anları yeterince iyi yansıtamaz. Profesyonel ekipler ise ışık, ses ve kompozisyon gibi detayları doğru kullanarak yüksek kaliteli içerikler üretir. Bu da etkinliğin değerini artırır.</p>
+
+    <!-- SEO Açısından Etkinlik Çekimi -->
+    <h2>SEO Açısından Etkinlik Çekimi</h2>
+    <p>“Etkinlik çekimi” anahtar kelimesi organizasyon ve medya sektörlerinde yüksek arama hacmine sahiptir. Bu nedenle SEO uyumlu içerik üretmek oldukça önemlidir. Doğal anahtar kelime kullanımı, kaliteli içerik ve kullanıcı odaklı yazım SEO başarısı için gereklidir. Ayrıca mobil uyumlu ve hızlı web siteleri Google sıralamasında avantaj sağlar.</p>
+
+    <!-- Sonuç + SECOND LINK -->
+    <h2>Sonuç</h2>
+    <p>
+      Etkinlik çekimi, özel anları ve kurumsal organizasyonları profesyonel şekilde ölümsüzleştiren önemli bir hizmettir. Hem bireysel hem de ticari açıdan büyük değer taşır.
+      Doğru planlama ve profesyonel ekip ile yapılan çekimler, her etkinliği daha etkileyici ve unutulmaz hale getirir.
+      Daha fazla bilgi ve referanslar için <a href="https://tanstsm-film-52b47b.gitlab.io/" class="smart-link" target="_blank" rel="noopener noreferrer">Etkinlik Çekim Portalı</a> sayfasını ziyaret edebilirsiniz.
+    </p>
+    <hr />
+  </div>
+</main>
+
+<footer>
+  <div class="container footer-flex">
+    <div class="copyright">© ETKİNLİK ÇEKİMİ • anılarınızı profesyonelce ölümsüzleştirin</div>
+    <div class="footer-links">
+      <a href="https://bugraozturkfilms.com/tanitim-filmi" target="_blank" rel="noopener noreferrer">Etkinlik Çekimi</a>
+      <a href="https://tanstsm-film-52b47b.gitlab.io/" target="_blank" rel="noopener noreferrer">Etkinlik Çekim Portalı</a>
+    </div>
+    <div class="copyright" style="font-size:0.7rem;">profesyonel • sinematik • unutulmaz anlar</div>
+  </div>
+</footer>
+</body>
+</html>
